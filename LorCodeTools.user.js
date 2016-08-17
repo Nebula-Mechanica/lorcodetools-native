@@ -69,7 +69,8 @@ panel.createBlock (
 panel.createBlock (
 	["[quote]", "Цитата", 'intag ("quote", "\\n");'],
 	["[code]", "Код", 'intag ("code", "\\n");'],
-	["[inline]", "Внутристрочный код", 'intag ("inline");']
+	["[inline]", "Внутристрочный код", 'intag ("inline");'],
+	["[pre]", "Код", 'intag ("pre", "\\n");']
 );
 panel.createBlock (
 	["[url]", "URL", 'url ();'],
@@ -85,8 +86,8 @@ panel.createBlock (
 	["[br]", "Перевод строки", 'wrtSel ("[br]", "");']
 );
 panel.createBlock (
-	[" fix ", "Превратить знаки и обозначения в соответствующие спец. символы", 'fix();'],
-	[" deltags-in ", "Удалить крайнее входящие обрамление тегами", 'deltagsin ();'],
+/*	[" fix ", "Превратить знаки и обозначения в соответствующие спец. символы", 'fix();'],*/
+	[" deltags ", "Удалить крайнее входящие обрамление тегами", 'deltagsin ();'],
 	[" brs ", "Добавить [br] к переводам строк", 'brs ();']
 );
 panel.createBlock (
@@ -320,7 +321,7 @@ function cut(C){
 	var U = U || "";
 	a = msg.selectionStart; b = msg.selectionEnd;
 	z = msg.value.substring (a, b);
-    wrtSel (z, 5,"[cut=]", "[/cut]",-z.length);
+    wrtSel (z, 5,"[cut]", "[/cut]",-z.length);
 }
 
 function deltagsin () {
