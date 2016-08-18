@@ -42,24 +42,23 @@ var u = window.location.href;
 // Panel
 var panel = document.createElement ("div");
 panel.id = 'atag';
-panel.createBlock =
-	function () {
-		block = document.createElement ("span");
-		for (i = 0; i < arguments.length; i++) {
-			link = document.createElement ("a");
-			link.className = 'btn btn-default';
-			link.textContent = arguments[i][0];
-			link.title = arguments[i][1];
-			link.exec = arguments[i][2];
-			link.onclick = function(e){
-				noDef(e)
-				eval(this.exec);
-				return false;
-			}
-			block.appendChild (link);
-		}
-		return this.appendChild (block);
+panel.createBlock = function () {
+	block = document.createElement ("span");
+	for (i = 0; i < arguments.length; i++) {
+		link = document.createElement ("a");
+		link.className = 'btn btn-default';
+		link.textContent = arguments[i][0];
+		link.title = arguments[i][1];
+		link.exec = arguments[i][2];
+		link.onclick = function(e){
+			noDef(e);
+			eval(this.exec);
+			return false;
+		};
+		block.appendChild (link);
 	}
+	return this.appendChild (block);
+};
 panel.createBlock (
 	["[b]", "Полужирный", 'intag ("b");'],
 	["[i]", "Курсив", 'intag ("i");'],
@@ -100,37 +99,36 @@ msg.rows = 20;
 
 // Styles
 obj = document.createElement ("style");
-obj.innerHTML = '\
-        #atag a {\
-        margin:1px;cursor: pointer;\
-        -o-transform-origin: 14px 17px; background-color: rgb(39, 44, 45);\
-        border-bottom-color: rgb(114, 159, 207); border-bottom-left-radius: 5px;\
-        border-bottom-right-radius: 5px; border-bottom-style: solid;\
-        border-bottom-width: 1px; border-left-color: rgb(114, 159, 207);\
-        border-left-style: solid; border-left-width: 1px;\
-        border-right-color: rgb(114, 159, 207); border-right-style: solid;\
-        border-right-width: 1px; border-top-color: rgb(114, 159, 207);\
-        border-top-left-radius: 5px; border-top-right-radius: 5px;\
-        border-top-style: solid; border-top-width: 1px;\
-        color: rgb(114, 159, 207);\
-        font-family: "Trebuchet MS";\
-        display: inline !important;\
-        font-size: 14px; height: 22px; line-height: 22.4px !important; margin-bottom: 5px; margin-top: 5px; max-height: none;\
-        max-width: none; padding: 5px 4px !important; text-align: center;\
-        text-decoration: none;\
-        width: 16px;\
-    }\
-	#atag a:hover {background-color:rgb(84, 84, 84); border-color:rgb(186, 189, 182);}\
-    #atag {\
-    margin-top: 5px; margin-bottom: 5px;\
-    padding: 3px 1px; font-size: 0.9em;\
-    }\
-    #atag > span {margin-right: 3px;}\
-	label[for="msg"] {display: inline-block; margin-top: 5px;}\
-	#msg {width: 50em !important;}\
-label[for="title"], label[for="form_mode"] {display: inline-block; margin: 5px 0 3px 0;}\
-	.msg_body p {margin: 0.3em 0 !important;}\
-	.quote > p {margin: 0.5em 0 0.3em 0 !important;}';
+obj.innerHTML = '#atag a {' +
+	'margin:1px;cursor: pointer;' +
+	'-o-transform-origin: 14px 17px; background-color: rgb(39, 44, 45);' +
+	'border-bottom-color: rgb(114, 159, 207); border-bottom-left-radius: 5px;' +
+	'border-bottom-right-radius: 5px; border-bottom-style: solid;' +
+	'border-bottom-width: 1px; border-left-color: rgb(114, 159, 207);' +
+	'border-left-style: solid; border-left-width: 1px;' +
+	'border-right-color: rgb(114, 159, 207); border-right-style: solid;' +
+	'border-right-width: 1px; border-top-color: rgb(114, 159, 207);' +
+	'border-top-left-radius: 5px; border-top-right-radius: 5px;' +
+	'border-top-style: solid; border-top-width: 1px;' +
+	'color: rgb(114, 159, 207);' +
+	'font-family: "Trebuchet MS";' +
+	'display: inline !important;' +
+	'font-size: 14px; height: 22px; line-height: 22.4px !important; margin-bottom: 5px; margin-top: 5px; max-height: none;' +
+	'max-width: none; padding: 5px 4px !important; text-align: center;' +
+	'text-decoration: none;' +
+	'width: 16px;' +
+	'}' +
+	'#atag a:hover {background-color:rgb(84, 84, 84); border-color:rgb(186, 189, 182);}' +
+	'#atag {' +
+	'margin-top: 5px; margin-bottom: 5px;' +
+	'padding: 3px 1px; font-size: 0.9em;' +
+	'}' +
+	'#atag > span {margin-right: 3px;}' +
+	'label[for="msg"] {display: inline-block; margin-top: 5px;}' +
+	'#msg {width: 50em !important;}' +
+	'label[for="title"], label[for="form_mode"] {display: inline-block; margin: 5px 0 3px 0;}' +
+	'.msg_body p {margin: 0.3em 0 !important;}' +
+	'.quote > p {margin: 0.5em 0 0.3em 0 !important;}';
 document.getElementsByTagName ("head")[0].appendChild (obj);
 
 // Remove formating tips
@@ -159,7 +157,7 @@ function cre_links(o, L){
 		}
 		d.onclick = L[j][1];
 		d.innerHTML = "[" + qlink.outerHTML + "] ";
-		S.appendChild(d)
+		S.appendChild(d);
 	}
 	if(o.firstElementChild && o.firstElementChild.nodeName != "IMG"){
 		clink = o.firstChild;
@@ -172,16 +170,16 @@ var t = document.getElementsByClassName("title");
 t.createQlink = function(){
 	for (i = 0; i < this.length; i++){
 		if(this[i].parentNode.nodeName != "ARTICLE") continue;
-		var A = Array.prototype.slice.call(arguments)
+		var A = Array.prototype.slice.call(arguments);
 		cre_links(this[i], A);
 	}
-}
+};
 
 // Add \n to <br>
 var mbs = document.getElementsByClassName("msg_body");
-for (j in mbs) if (!isNaN (j)) {
+for (var j in mbs) if (!isNaN (j)) {
 	var mps = mbs[j].getElementsByTagName ("p");
-	for (i in mps)
+	for (var i in mps)
 		if (!isNaN (i))
 			mps[i].innerHTML = mps[i].innerHTML.replace (/<br\/?>(?![\n\r])/g, "<br>\n");
 }
@@ -191,16 +189,19 @@ for (j in mbs) if (!isNaN (j)) {
 
 //	Auxiliary functions
 function wrtSel(subj, offset, before, after, zset){ //Also msg.wrtSel (before, after, offset)
-	if(typeof offset == "string")
-		var
-			after = offset, offset = before,
-			before = subj, subj = undefined;
-	var
-		before = before || "", after = after || "",
-		offset = set (offset, before.length), zset = zset || 0;
-	var
-		startSel = set (a, msg.selectionStart), endSel = set (b, msg.selectionEnd),
-		subj = before + set (subj, msg.value.substring (startSel, endSel)) + after;
+	if(typeof offset == "string") {
+		after = offset;
+		offset = before;
+		before = subj;
+		subj = undefined;
+	}
+	before = before || "";
+	after = after || "";
+	offset = set (offset, before.length);
+	zset = zset || 0;
+	startSel = set (a, msg.selectionStart);
+	endSel = set (b, msg.selectionEnd);
+	subj = before + set (subj, msg.value.substring (startSel, endSel)) + after;
 
 	msg.value = msg.value.substring (0, startSel) + subj + msg.value.substring (endSel);
 	msg.selectionStart = msg.selectionEnd = startSel+offset;
@@ -212,7 +213,7 @@ function lst(){
 	a = msg.selectionStart; b = msg.selectionEnd;
 	z = msg.value.substring(a, b).replace(/([^\n\r]+)[\n\r]*/g, "[*]$1\n");
 	z = z.replace(/^[\s\r\n]+/g, '').replace(/^$/g,'');
-	if(z.length == 0) z = "[*]\n";
+	if(z.length === 0) z = "[*]\n";
 	wrtSel(z, 6, "\n[list]\n", "[/list]\n");
 }
 
@@ -233,14 +234,14 @@ function getTextContent (post) {
 
 function getUserName(evt){
 	var post = getMsg(evt.target);
-	if (i = post.getElementsByClassName("sign")[0].getElementsByTagName("a")[0])
+	if (i == post.getElementsByClassName("sign")[0].getElementsByTagName("a")[0])
 		return i.innerHTML;
 	else return "anonymous";
 }
 
 // Functions to run
 function intag (tag, arg) {
-	var arg = arg || "";
+	arg = arg || "";
 	wrtSel(
 		undefined,
 		tag.length + 2 + arg.length*2,
@@ -277,7 +278,7 @@ function fix () {
 		c = c.replace (/\([tт][mм]\)/gi, "™");
 		c = c.replace (/-->/g, "→");
 		return c;
-	}
+	};
 
 	if (a != b) {
 		var c = msg.value.substring (a, b);
@@ -289,30 +290,30 @@ function fix () {
 }
 
 function url(U){
-	var U = U || "";
+	U = U || "";
 	a = msg.selectionStart; b = msg.selectionEnd;
 	z = msg.value.substring (a, b);
-	if(U != ""){
+	if(U !== ""){
 		wrtSel (z, 6+U.length,
 			"[url=" + U + "]", "[/url]",
 			-z.length
 		);
 	}
-	else if (/((ftp|http|https):\/\/)[\.\w- ]{2,}\.[A-Za-z]{2,4}(\/?$|\/.*)/.test(z) || z.length == 0) {
+	else if (/((ftp|http|https):\/\/)[\.\w- ]{2,}\.[A-Za-z]{2,4}(\/?$|\/.*)/.test(z) || z.length === 0) {
 		wrtSel (z, z.length+6,
-			"[url=", "][/url]"
+		        "[url=", "][/url]"
 		);
 	}
 	else if (/[\.\w- ]{2,}\.[A-Za-z]{2,4}(\/?$|\/.*)/.test(z)) {
 		wrtSel (
-			"http://"+z, z.length+13,
-			"[url=", "][/url]", 7
+		    "http://"+z, z.length+13,
+		    "[url=", "][/url]", 7
 		);
 	}
 	else {
 		wrtSel (z, 5,
-			"[url=]", "[/url]",
-			-z.length
+		        "[url=]", "[/url]",
+		        -z.length
 		);
 	}
 }
@@ -321,7 +322,7 @@ function cut(C){
 	var U = U || "";
 	a = msg.selectionStart; b = msg.selectionEnd;
 	z = msg.value.substring (a, b);
-    wrtSel (z, 5,"[cut]", "[/cut]",-z.length);
+	wrtSel (z, 5,"[cut]", "[/cut]",-z.length);
 }
 
 function deltagsin () {
@@ -389,12 +390,10 @@ function qb(e){
 	noDef(e);
 	var post, seltxt = getSelection ();
 	function f(s,o){
-		return "[quote" + (getMsg(o) != getMsg(msg)
-		? "=" + getUserName (e)
-		: "") + "]"
-		+ substTags(s) + "\n[/quote]\n\n";
+		return "[quote" + (getMsg(o) != getMsg(msg) ? "=" + getUserName (e) : "") +
+			"]" + substTags(s) + "\n[/quote]\n\n";
 	}
-	if (seltxt != "") {
+	if (seltxt !== "") {
 		post = getMsg(seltxt.getRangeAt(0).commonAncestorContainer);
 		wrtSel(i = f(seltxt.getRangeAt (0).cloneContents(),this), i.length);
 	}
@@ -408,8 +407,8 @@ function qb(e){
 function q(e) {
 	noDef(e);
 	var seltxt = getSelection ();
-	if (seltxt != "") {
-		var post = getMsg(seltxt.getRangeAt(0).commonAncestorContainer);
+	if (seltxt !== "") {
+		post = getMsg(seltxt.getRangeAt(0).commonAncestorContainer);
 		wrtSel (i = seltxt.toString ().replace (/(\n\r?|^)(?:\n\r?)?/g, "$1> ") + "\r\n", i.length);
 	}
 	else {
