@@ -35,7 +35,7 @@ function set (p, z) {
 i = j = undefined;
 a = b = undefined;
 
-form = document.getElementById ("commentForm") || document.getElementById ("messageForm") || document.getElementById ("changeForm").getElementsByTagName ("label")[7];
+form = document.getElementById ("commentForm") || document.getElementById ("messageForm") || document.getElementById ("editRegForm") || document.getElementById ("changeForm").getElementsByTagName ("label")[7];
 msg = document.getElementById ("msg") || document.getElementById ("form_msg") || document.getElementById ("info");
 var u = window.location.href;
 
