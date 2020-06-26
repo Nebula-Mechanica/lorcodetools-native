@@ -124,11 +124,8 @@ obj.innerHTML = '#atag a {' +
 	'padding: 3px 1px; font-size: 0.9em;' +
 	'}' +
 	'#atag > span {margin-right: 3px;}' +
-	'label[for="msg"] {display: inline-block; margin-top: 5px;}' +
-	'#msg {width: 50em !important;}' +
-	'label[for="title"], label[for="form_mode"] {display: inline-block; margin: 5px 0 3px 0;}' +
-	'.msg_body p {margin: 0.3em 0 !important;}' +
-	'.quote > p {margin: 0.5em 0 0.3em 0 !important;}';
+	'label[for="msg"] {display: inline-block; margin-top: 5px;}'
+	'label[for="title"], label[for="form_mode"] {display: inline-block; margin: 5px 0 3px 0;}';
 document.getElementsByTagName ("head")[0].appendChild (obj);
 
 // Remove formating tips
